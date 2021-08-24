@@ -73,11 +73,23 @@ stores:
       class_name: TupleFilesystemStoreBackend
       base_directory: expectations/
 
+  # validations_store:
+  #   class_name: ValidationsStore
+  #   store_backend:
+  #     class_name: TupleFilesystemStoreBackend
+  #     base_directory: uncommitted/validations/
+  
+
   validations_store:
     class_name: ValidationsStore
     store_backend:
-      class_name: TupleFilesystemStoreBackend
-      base_directory: uncommitted/validations/
+      class_name: TupleS3StoreBackend
+      bucket: bi-dev
+      prefix: validations
+      boto3_options:
+        endpoint_url: http://127.0.0.1:9000
+        aws_access_key_id: ${AWS_ACCESS_KEY_ID}
+        aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
 
   evaluation_parameter_store:
     # Evaluation Parameters enable dynamic expectations. Read more here:
@@ -110,6 +122,21 @@ data_docs_sites:
       base_directory: uncommitted/data_docs/local_site/
     site_index_builder:
       class_name: DefaultSiteIndexBuilder
+  s3_site:
+    class_name: SiteBuilder
+    # set to false to hide how-to buttons in Data Docs
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleS3StoreBackend
+      bucket: bi-dev
+      prefix: data_docs
+      boto3_options:
+        endpoint_url: http://127.0.0.1:9000
+        aws_access_key_id: ${AWS_ACCESS_KEY_ID}
+        aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+      show_cta_footer: true
 
 anonymous_usage_statistics:
   data_context_id: 54fa6c52-4cb4-4a41-890e-ac47f0a7e923
