@@ -8,3 +8,4 @@
 -i https://pypi.org/simple
 azure-storage-blob==12.8.1
 great-expectations==0.13.29
+boto3==1.18.27
