@@ -1,0 +1,50 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "taxi.d01",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_to_exist",
+      "kwargs": {
+        "column": "trip_distance"
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_equal",
+      "kwargs": {
+        "value": 10000
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "passenger_count",
+        "max_value": 6,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "trip_distance"
+      },
+      "meta": {}
+    }
+  ],
+  "meta": {
+    "citations": [
+      {
+        "batch_kwargs": {
+          "data_asset_name": "yellow_tripdata_sample_2019-01",
+          "datasource": "data__dir",
+          "path": "/home/vdm/vscodeProjects/ge_tutorial/great_expectations/../data/yellow_tripdata_sample_2019-01.csv"
+        },
+        "citation_date": "2021-08-25T03:28:07.596555Z",
+        "comment": "New suite added via CLI"
+      }
+    ],
+    "great_expectations_version": "0.13.29"
+  }
+}
